@@ -11,7 +11,7 @@ Questão(id,test,enunciado,respostaTexto,opções,respostaOpções,tipo(abertas ou fe
 
 RespostaTest(id,usuario,test,respostas,nota)
 
-RespostaQuestão(id,idQuestão,respostaTexto,respostaOpcao)
+RespostaQuestão(id,questão,respostaTexto,respostaOpcao)
 
 * */
 class DefaultFacade extends AbstractFacade {
