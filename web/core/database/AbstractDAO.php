@@ -31,8 +31,9 @@ abstract class AbstractDAO{
 		}
 
 		$tableName = $this->tableName;
-
+		if($obj->getId()==0){
 		$obj->setId($this->getConn()->getMaxId($this->getTableName())+1);
+		}
 		$comando = DMLGenerator::createInsert($tableName,$this->mapear($obj));
 //		echo $comando;
 
@@ -271,8 +272,8 @@ abstract class AbstractDAO{
 			return $obj;
 		}
 		else{
-			throw new Exception("Nenhum objeto encontrado");
-			return null;
+			throw new Exception("Nenhum objeto encontrado:".$this->sql->generateSQL());
+			
 		}
 
 	}
