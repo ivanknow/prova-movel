@@ -190,7 +190,7 @@ abstract class AbstractDAO{
 
 			foreach ($attr as $key => $value){
 					
-				if($value !== 0 && $value !== '0' && $value !== '' && $value !== '0000-00-00 00:00:00' && $value !== '0000-00-00' ){
+				if($value !== 0 && $value !== '0' && $value !== '' && $value !== '0000-00-00 00:00:00' && $value !== '0000-00-00' && $value !== null){
 						
 					$arrayWhere[] = "".$key." = '".$value."'";
 				}
