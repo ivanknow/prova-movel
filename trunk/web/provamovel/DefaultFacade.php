@@ -7,7 +7,7 @@ Turma(id,autor,titulo,membros,tests)
 
 Test(id,turma,titulo,qtdQuestões,autor,tipo(publico ou privado(publico com link direto, privado com turma)),publicado ou rascunho,questoes)
 
-Questão(id,test,enunciado,respostaTexto,opções,respostaOpções,tipo(abertas ou fechadas))
+Questão(id,test,enunciado,respostaTexto,opções,respostaOpções,tipo(abertas ou fechadas) data_criacao)
 
 RespostaTest(id,usuario,test,respostas,nota)
 
