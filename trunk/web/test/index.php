@@ -30,7 +30,7 @@ function loadValues($listNames){
 $version = system('phpunit --version',$retval);
 
 if($retval!=1){
-	
+	loadValues(getValuesList());
 	if(isset($_GET['test'])){
 		echo "<h2>".$_GET['test']."</h2>";
 		echo "<div>";
@@ -38,9 +38,14 @@ if($retval!=1){
 			system('phpunit '.$_GET['test'].".php",$retval);
 		echo "</div><hr/>";
 		
+		echo "<div>";
+		echo "<h3>Log</h3>";
+			echo nl2br(file_get_contents("../log.txt"));
+		echo "</div><hr/>";
+		
 	}
 	
-	loadValues(getValuesList());
+	
 	
 	
 }else{
