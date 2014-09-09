@@ -5,9 +5,9 @@ Usuario(id,email,senha)
 
 Turma(id,autor,titulo,membros,tests)
 
-Test(id,turma,titulo,qtdQuestões,autor,tipo(publico ou privado(publico com link direto, privado com turma)),publicado ou rascunho,questoes)
+Test(id,turma,titulo,qtdQuestões,autor,tipo(publico ou privado(publico com link direto, privado com turma)),publicado ou rascunho,questoes,data_criacao)
 
-Questão(id,test,enunciado,respostaTexto,opções,respostaOpções,tipo(abertas ou fechadas) data_criacao)
+Questão(id,test,enunciado,respostaTexto,opções,respostaOpções,tipo(abertas ou fechadas))
 
 RespostaTest(id,usuario,test,respostas,nota)
 
