@@ -1,35 +1,43 @@
 <?php
 class Prova extends ObjetoPersistente{
 
+	private $titulo;
 	private $turma;
 	private $autor;
-	private $numQuestao;
-	private $tipo;
 	private $publicada;
 	private $questoes;
-	public function __construct($id = 0,$turma= null,$autor= null,$numQuestao = 0,$tipo = 0,$publicada = 0,$questoes= array()){
+	private $data_criacao;
+	
+	public function __construct($id = 0,$titulo="",$turma= null,$autor= null,$publicada = 0,$questoes= array()){
+		Console::log("Titulo no construtor:".$titulo);
 		$this->setId($id);
+		$this->titulo = $titulo;
 		$this->turma = $turma;
 		$this->autor = $autor;
-		$this->numQuestao = $numQuestao;
-		$this->tipo = $tipo;
 		$this->publicada = $publicada;
 		$this->questoes = $questoes;
-
 	}
 
 	public static function construct($array){
 		$obj = new Prova();
+		$obj->setId($array['id']);
+		$obj->setTitulo( $array['titulo']);
 		$obj->setTurma( $array['turma']);
 		$obj->setAutor( $array['autor']);
-		$obj->setNumQuestao( $array['numQuestao']);
-		$obj->setTipo( $array['tipo']);
 		$obj->setPublicada( $array['publicada']);
 		$obj->setQuestoes( $array['questoes']);
 		return $obj;
 
 	}
 
+	public function getTitulo(){
+		return $this->titulo;
+	}
+	
+	public function setTitulo($titulo){
+		$this->titulo=$titulo;
+	}
+	
 	public function getTurma(){
 		return $this->turma;
 	}
@@ -47,20 +55,9 @@ class Prova extends ObjetoPersistente{
 	}
 
 	public function getNumQuestao(){
-		return $this->numQuestao;
+		return count($this->questoes);
 	}
 
-	public function setNumQuestao($numQuestao){
-		$this->numQuestao=$numQuestao;
-	}
-
-	public function getTipo(){
-		return $this->tipo;
-	}
-
-	public function setTipo($tipo){
-		$this->tipo=$tipo;
-	}
 
 	public function getPublicada(){
 		return $this->publicada;
@@ -77,35 +74,30 @@ class Prova extends ObjetoPersistente{
 	public function setQuestoes($questoes){
 		$this->questoes=$questoes;
 	}
+	
+	public function getDataCriacao(){
+		return $this->data_criacao;
+	}
+	
 	public function equals($object){
 		if($object instanceof Prova){
 
-			if($this->turma!=$object->turma){
+			if($this->titulo!=$object->titulo){
+				return false;
+			
+			}
+			
+			if(!$object->turma->equals($this->turma)){
 				return false;
 
 			}
 
-			if($this->autor!=$object->autor){
-				return false;
-
-			}
-
-			if($this->numQuestao!=$object->numQuestao){
-				return false;
-
-			}
-
-			if($this->tipo!=$object->tipo){
+			if(!$this->autor->equals($object->autor)){
 				return false;
 
 			}
 
 			if($this->publicada!=$object->publicada){
-				return false;
-
-			}
-
-			if($this->questoes!=$object->questoes){
 				return false;
 
 			}
@@ -120,7 +112,7 @@ class Prova extends ObjetoPersistente{
 	}
 	public function toString(){
 
-		return "  [turma:" .$this->turma. "]  [autor:" .$this->autor. "]  [numQuestao:" .$this->numQuestao. "]  [tipo:" .$this->tipo. "]  [publicada:" .$this->publicada. "]  [questoes:" .$this->questoes. "]  " ;
+		return " [turma:" .$this->titulo. "] [turma:" .$this->turma. "]  [autor:" .$this->autor. "] [publicada:" .$this->publicada. "]   " ;
 	}
 
 }

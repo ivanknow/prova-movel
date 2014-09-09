@@ -45,6 +45,18 @@ class TurmaDAOTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testDelete() {
-	
+		$DAO = new TurmaDAO();
+		$turmaTemp = new Turma(1);
+		
+		$result = $DAO->buscar($turmaTemp);
+		
+		$this->assertEquals(1,$result->getId());
+		
+		
+		$DAO->apagar($result);
+		
+		$result2 = $DAO->buscarTodos($turmaTemp);
+		
+		$this->assertEquals(0,count($result2));
 	}
 }
