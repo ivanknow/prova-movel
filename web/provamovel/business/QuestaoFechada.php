@@ -13,12 +13,15 @@ class QuestaoFechada extends Questao{
 	public static function construct($array){
 		$obj = new QuestaoFechada();
 		
-		$this->setId($id);
+		$obj->setId($array['id']);
 		$obj->setProva( $array['prova']);
 		$obj->setEnunciado( $array['enunciado']);
 		$obj->setTipo( $array['tipo']);
 		
-		$obj->setOpcoes( $array['opcoes']);
+			if(isset($array['opcoes'])){
+				$obj->setOpcoes( $array['opcoes']);
+			}
+			
 		$obj->setOpcaoResposta( $array['opcaoResposta']);
 		return $obj;
 

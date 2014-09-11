@@ -14,7 +14,7 @@ class Questao extends ObjetoPersistente{
 
 	public static function construct($array){
 		$obj = new Questao();
-		$this->setId($id);
+		$obj->setId($array['id']);
 		$obj->setProva( $array['prova']);
 		$obj->setEnunciado( $array['enunciado']);
 		$obj->setTipo( $array['tipo']);

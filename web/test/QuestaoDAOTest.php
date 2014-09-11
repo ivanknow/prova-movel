@@ -1,46 +1,53 @@
 <?php
-class TurmaDAOTest extends PHPUnit_Framework_TestCase {
+class QuestaoDAOTest extends PHPUnit_Framework_TestCase {
 
 	public function testInsertAberta() {
+		//QuestaoAberta::__construct($id, $enunciado, $prova, $tipo, $respostaTexto
+		Console::reset();
+		$prova = new Prova(1);
+		$questao = new QuestaoAberta(1,"Voce gosta de agua?",$prova,1,"Tem gente que gosta e tem gente que não");
 		
-		$questaoFechada = new QuestaoFechada(1);
+		$dao = new QuestaoDAO();
 		
-		$opcao = new Opcao(1,"Sim",$questaoFechada);
+		$id = $dao->inserir($questao);
 		
-		$dao = new OpcaoDAO();
+		$questaoTemp = new Questao(1);
 		
-		$id = $dao->inserir($opcao);
-		
-		$opcaoTemp = new Opcao($id);
-		
-		$result = $dao->buscarTodos($opcaoTemp);
+		$result = $dao->buscarTodos($questaoTemp);
 		
 		$this->assertEquals (1,count($result));
+		$this->assertTrue ($result[0] instanceof QuestaoAberta);
 		
 	}
 	
 	public function testInsertFechada() {
 	
-		$questaoFechada = new QuestaoFechada(1);
 	
-		$opcao = new Opcao(1,"Sim",$questaoFechada);
-	
-		$dao = new OpcaoDAO();
-	
-		$id = $dao->inserir($opcao);
-	
-		$opcaoTemp = new Opcao($id);
-	
-		$result = $dao->buscarTodos($opcaoTemp);
-	
+		$opcao1 = new Opcao(0,"Azul");
+		$opcao2 = new Opcao(0,"Vermelho");
+		
+		$prova = new Prova(1);
+		//QuestaoFechada::__construct($id, $enunciado, $prova, $tipo, $opcoes, $opcaoResposta) 
+		$questao = new QuestaoFechada(2,"Qual é sua cor preferida?",$prova,2,array($opcao1,$opcao2),$opcao1);
+		
+		$dao = new QuestaoDAO();
+		
+		$id = $dao->inserir($questao);
+		
+		$questaoTemp = new Questao(2);
+		
+		$result = $dao->buscarTodos($questaoTemp);
+		
 		$this->assertEquals (1,count($result));
-	
+		$this->assertTrue ($result[0] instanceof QuestaoFechada);
+		//$this->assertTrue (2,count($result[0]->getOpcoes()));
+		
 	}
 
 
 	public function testDelete() {
 
-		$dao = new OpcaoDAO();
+	/*	$dao = new OpcaoDAO();
 		
 		$opcaoTemp = new Opcao(1);
 		
@@ -52,7 +59,7 @@ class TurmaDAOTest extends PHPUnit_Framework_TestCase {
 		
 		$result = $dao->buscarTodos($opcaoTemp);
 		
-		$this->assertEquals (0,count($result));
+		$this->assertEquals (0,count($result));*/
 		
 	}
 }
