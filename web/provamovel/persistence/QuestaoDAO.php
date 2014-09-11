@@ -41,27 +41,53 @@ private $opcaoDAO;
 			return QuestaoAberta::construct($array);
 		}else{
 			$obj = QuestaoFechada::construct($array);
-			
+			$obj->setOpcoes($this->opcaoDAO->buscarTodos(new Opcao(0,null,$obj)));
 			return $obj;
 		}
-		
-
+	
 	}
 	
 	public function inserir($obj){
-		$id = parent::inserir($obj);
+		//primeiro eu insiro a questão para que eu tenha um id para relacionar
+		
+		$obj->setId(parent::inserir($obj));
 		
 		if($obj instanceof QuestaoFechada){
-			foreach ($obj->getOpcoes() as $opcao){
-				$opcao->setQuestao(new Questao($obj->getId()));
-				Console::log("Opa");
-			}
-			foreach ($obj->getOpcoes() as $opcao){
-				$this->opcaoDAO->inserir($opcao);
-				Console::log("insere opcao ".$opcao->getId());
-			}
-			
+			$this->inserirOpcoes($obj);
 		}
 	}
+	
+	private function apagarDependencias($questao){
+		if ($questao->getId()==0) {
+				
+			throw new Exception("Object ID cannot be '0' in a relactional operation.You need update the object id");
+		}else{
+		
+			$result = $this->opcaoDAO->buscarTodos(new Opcao(0,null,$questao));
+		
+			foreach ($result as $opcao){
+				$this->opcaoDAO->apagar($opcao);
+			}
+		}
+	}
+	
+	private function inserirOpcoes(QuestaoFechada $questao){
+		
+		foreach ($questao->getOpcoes() as $opcao){
+		
+			$opcao->setQuestao(new Questao($questao->getId()));
+		
+			$id = $this->opcaoDAO->inserir($opcao);
+		
+		if($opcao->equals($questao->getOpcaoResposta())){
+
+			$questao->setOpcaoResposta(new Opcao($id));
+		}
+				
+		}
+		
+		$this->atualizar($questao);
+	}
+
 
 }

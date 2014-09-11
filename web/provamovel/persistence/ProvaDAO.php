@@ -14,7 +14,6 @@ class ProvaDAO extends AbstractDAO{
 	}
 
 	public function mapear($obj){
-		Console::log("Titulo em mapear:".$obj->getTitulo());
 		$array = $obj->toArray();
 		if($obj->getAutor()!=null){
 			$array['autor'] = $obj->getAutor()->getId();
