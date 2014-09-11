@@ -3,14 +3,14 @@ class QuestaoAberta extends Questao{
 
 	private $respostaTexto;
 	public function __construct($id=0,$enunciado= "",$prova= null,$tipo = 0,$respostaTexto = ""){
-		parent::__construct($id=0,$enunciado= "",$prova= null,$tipo = 0);
+		parent::__construct($id,$enunciado,$prova,$tipo);
 		$this->respostaTexto = $respostaTexto;
 	}
 
 	public static function construct($array){
 		
 		$obj = new QuestaoAberta();
-		$this->setId($id);
+		$obj->setId($array['id']);
 		$obj->setProva( $array['prova']);
 		$obj->setEnunciado( $array['enunciado']);
 		$obj->setTipo( $array['tipo']);

@@ -9,7 +9,7 @@ class Prova extends ObjetoPersistente{
 	private $data_criacao;
 	
 	public function __construct($id = 0,$titulo="",$turma= null,$autor= null,$publicada = 0,$questoes= array()){
-		Console::log("Titulo no construtor:".$titulo);
+		
 		$this->setId($id);
 		$this->titulo = $titulo;
 		$this->turma = $turma;
