@@ -1,5 +1,5 @@
 <?php
-class TurmaDAOTest extends PHPUnit_Framework_TestCase {
+class OpcaoDAOTest extends PHPUnit_Framework_TestCase {
 
 	public function testInsert() {
 		

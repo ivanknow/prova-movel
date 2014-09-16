@@ -2,8 +2,6 @@
 class QuestaoDAOTest extends PHPUnit_Framework_TestCase {
 
 	public function testInsertAberta() {
-		//QuestaoAberta::__construct($id, $enunciado, $prova, $tipo, $respostaTexto
-		Console::reset();
 		$prova = new Prova(1);
 		$questao = new QuestaoAberta(1,"Voce gosta de agua?",$prova,1,"Tem gente que gosta e tem gente que não");
 		
@@ -45,21 +43,21 @@ class QuestaoDAOTest extends PHPUnit_Framework_TestCase {
 	}
 
 
-	public function testDelete() {
+	public function testDeleteAberta() {
 
-	/*	$dao = new OpcaoDAO();
+		$questao = new QuestaoAberta(1);
 		
-		$opcaoTemp = new Opcao(1);
+		$dao = new QuestaoDAO();
 		
-		$result = $dao->buscarTodos($opcaoTemp);
+		$id = $dao->apagar($questao);
+		
+		$questaoTemp = new Questao(1);
+		
+		$result = $dao->buscarTodos($questaoTemp);
 		
 		$this->assertEquals (1,count($result));
+		$this->assertTrue ($result[0] instanceof QuestaoAberta);
 		
-		$dao->apagar($result[0]);
-		
-		$result = $dao->buscarTodos($opcaoTemp);
-		
-		$this->assertEquals (0,count($result));*/
-		
+	
 	}
 }
