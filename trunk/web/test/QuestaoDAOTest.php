@@ -45,19 +45,23 @@ class QuestaoDAOTest extends PHPUnit_Framework_TestCase {
 
 	public function testDeleteAberta() {
 
-		$questao = new QuestaoAberta(1);
-		
 		$dao = new QuestaoDAO();
-		
-		$id = $dao->apagar($questao);
-		
+
 		$questaoTemp = new Questao(1);
 		
 		$result = $dao->buscarTodos($questaoTemp);
 		
 		$this->assertEquals (1,count($result));
+		
 		$this->assertTrue ($result[0] instanceof QuestaoAberta);
 		
+		$this->assertEquals($questaoTemp->getId(),$result[0]->getId());
+		
+		$id = $dao->apagar($questaoTemp);
+		
+		$result = $dao->buscarTodos($questaoTemp);
+		
+		$this->assertEquals (0,count($result));
 	
 	}
 }
