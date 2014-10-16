@@ -19,34 +19,44 @@ class DefaultFacade extends AbstractFacade {
 		parent::__construct ();
 		$this->setController ( new ExampleController () );
 	}
-	public function SAY_HI($array) {
-		return array (
-				"msg" => "Hi" 
-		);
+//GERAL
+	public function CADASTRAR($array) {
+		return array();
 	}
-	public function SAY_HELLO($array) {
-		return array (
-				"msg" => "Hello," . $array ['name'] 
-		);
+	public function LOGIN($array) {
+		return array();
 	}
-	public function SAY_HELLO_CONT($array) {
-		return array (
-				"msg" => $this->getController ()->sayHelloController ( $array ['name'] ) 
-		);
+	public function LOGOUT($array) {
+		return array();
 	}
-	public function INSERIR_PESSOA($array) {
-		$pessoa = Pessoa::construct ( $array );
-		
-		if ($this->getController ()->inserir ( $pessoa )) {
-			
-			return array (
-					"msg" => "Inserido com sucesso" 
-			);
-		} else {
-			return array (
-					"msg" => "error" 
-			);
-		}
+//PROFESSOR
+	public function CADASTRAR_PROVA($array) {
+		return array();
+	}
+	public function SALVAR_PROVA($array) {
+		return array();
+	}
+	public function APAGAR_PROVA($array) {
+		return array();
+	}
+	public function EDITAR_PROVA($array) {
+		return array();
+	}
+	public function ADD_QUESTAO($array) {
+		return array();
+	}
+	public function APAGAR_QUESTAO($array) {
+		return array();
+	}
+	//ALUNO
+	public function INICIAR_PROVA($array) {
+		return array();
+	}
+	public function INICIAR_PROVA($array) {
+		return array();
+	}
+	public function RESPONDER_QUESTAO($array) {
+		return array();
 	}
 }
 ?>
