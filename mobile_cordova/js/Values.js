@@ -7,8 +7,9 @@
 var Values = {
 
 	server : "http://localhost/workspace/aplicativo-cidade/server/index.php",
-	appTitle : "Prova Móvel",
-	appTitleAbout : "Prova Móvel - Sobre Nós",
+	appTitle : "Prova Movel",
+	appTitleProva : "Prova Disponiveis",
+	appTitleAbout : "Prova Movel - Sobre Nos",
 	pages : {},
 
 	init : function() {
