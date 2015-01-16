@@ -1,57 +1,25 @@
-/**
- * Object with values that is used for all aplication
- * 
- * Dependencias: Jquery, JqueryMobile
- */
+var ProvaController = new Controller("prova", ".linkProva", "", "id");
 
-var Telefone = {
-	divListaTelefone : "divListaTelefone",
-	telefones : [],
-	init : function() {
+ProvaController.setShowScreenList(function(items){
+	var html = "";
+	for (t in items) {
+		var link = HTMLMaker().createTag("a").attr("href", "iniciarprova.html").attr("class","linkProva").content(items[t].titulo);
+		var linkIcon = HTMLMaker().createTag("a").attr("href", "iniciarprova.html").attr("class","linkProva").content(items[t].titulo);
+		html +=  HTMLMaker().createTag("li").content(link.show()+linkIcon.show()).show();		
+		
+		
+/*		<li><a href='iniciarprova.html'> Prova 1 </a> <a href='iniciarprova.html' data-transition='pop'
+					class='linkProva'>Iniciar</a></li>*/
 
-		Telefone.buscarTelefones();
-		$(document).off("click", ".linkTelefone").on("click", ".linkTelefone",
-				function() {
-
-					var id = $(this).attr('appid');
-
-					alert("ligar");
-				});
-	},
-	buscarTelefones : function() {
-		;
-
-		Telefone.telefones = [ {
-			"titulo" : "loja x",
-			"telefone" : "38615251"
-		}, {
-			"titulo" : "loja 2",
-			"telefone" : "38615251"
-		}, {
-			"titulo" : "loja 4",
-			"telefone" : "38615251"
-		} ];
-
-		Telefone.mostrarTelefones();
-
-	},
-	mostrarTelefones : function() {
-
-		var html = "";
-		for (t in Telefone.telefones) {
-			html += "<li>"
-					+ "<a href='#'> "
-					+ Telefone.telefones[t].titulo
-					+ "</a>"
-					+ "<a href='#' data-transition='pop' class='linkTelefone'>Ligar</a>"
-					+ "</li>";
-
-		}
-
-		$("#" + Telefone.divListaTelefone).html(html);
 	}
-};
 
-$(document).on("pagebeforecreate", "#" + Values.pages.telefone, function() {
-	Telefone.init();
+	$("#divListaProva").html(html);
+});
+
+/*ProvaController.setShowItem(function(item){
+	
+});*/
+
+$(document).on("pagebeforecreate", "#home", function() {
+	ProvaController.init();
 });

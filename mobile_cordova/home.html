@@ -7,6 +7,7 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mobile-1.4.5.min.js"></script>
 <script src="js/Values.js"></script>
+<script src="js/Controller.js"></script>
 <script src="js/HTMLMaker.js"></script>
 <script src="js/Snippets.js"></script>
 <script src="js/Prova.js"></script>
@@ -16,14 +17,15 @@
 	<div id="home" data-role="page">
 		<div data-role="header" data-position="fixed">
 			<h3 class="html-from-values" appid="appTitleProva"></h3>
+			<span class="html-from-snippet-array" snippet="snippet-btn-sair"></span>
 		</div>
 		<div role="main" class="ui-content">
 			<ul data-role="listview" id="divListaProva" data-split-icon="action"
 				data-split-theme="d" data-inset="true">
-				<li><a href='#'> Prova 1 </a> <a href='iniciarprova.html' data-transition='pop'
-					class='linkTelefone'>Iniciar</a></li>
-				<li><a href='#'> Prova 1 </a> <a href='iniciarprova.html' data-transition='pop'
-					class='linkTelefone'>Iniciar</a></li>
+				<li><a href='iniciarprova.html'> Prova 1 </a> <a href='iniciarprova.html' data-transition='pop'
+					class='linkProva'>Iniciar</a></li>
+				<li><a href='iniciarprova.html'> Prova 1 </a> <a href='iniciarprova.html' data-transition='pop'
+					class='linkProva'>Iniciar</a></li>
 			</ul>
 		</div>
 		<div data-role="footer" data-position="fixed"
