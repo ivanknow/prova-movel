@@ -13,36 +13,22 @@
 <script src="js/App.js"></script>
 </head>
 <body>
-	<div id="iniciarprova" data-role="page">
+	<div id="responderaberta" data-role="page">
 		<div data-role="header" data-position="fixed">
 			<h3 class="html-from-values" appid="appTitleProva"></h3>
 		</div>
 		<div role="main" class="ui-content">
-			<table data-role="table" class="ui-responsive" id="myTable">
-				<thead>
-					<tr>
-						<th>Prova</th>
-						<th>Criada por</th>
-						<th>Disponível em</th>
-						<th>Questões</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Titulo da prova</td>
-
-						<td>Gilbeto Cysneiros</td>
-
-						<td>15/01/2015</td>
-
-						<td>15</td>
-					</tr>
-				</tbody>
-			</table>
-			<a href="responder.html" data-transition="slideup"
-				class="ui-btn ui-corner-all">Iniciar</a>
-				<a href="home.html" data-transition="slideup"
-				class="ui-btn ui-corner-all">Voltar</a>
+			questão aberta
+		</div>
+		<div data-role="footer" data-position="fixed"
+			class="html-from-snippet-array" snippet="snippet-footer"></div>
+	</div>
+	<div id="responderfechada" data-role="page">
+		<div data-role="header" data-position="fixed">
+			<h3 class="html-from-values" appid="appTitleProva"></h3>
+		</div>
+		<div role="main" class="ui-content">
+			questão fechada
 		</div>
 		<div data-role="footer" data-position="fixed"
 			class="html-from-snippet-array" snippet="snippet-footer"></div>

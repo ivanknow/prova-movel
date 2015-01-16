@@ -6,7 +6,7 @@
 
 var Values = {
 
-	server : "http://localhost/workspace/aplicativo-cidade/server/index.php",
+	server : "http://localhost/workspace/prova/server/",
 	appTitle : "Prova Movel",
 	appTitleProva : "Prova Disponiveis",
 	appTitleAbout : "Prova Movel - Sobre Nos",
