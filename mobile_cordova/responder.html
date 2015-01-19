@@ -7,31 +7,40 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mobile-1.4.5.min.js"></script>
 <script src="js/Values.js"></script>
+<script src="js/Controller.js"></script>
 <script src="js/HTMLMaker.js"></script>
 <script src="js/Snippets.js"></script>
 <script src="js/Prova.js"></script>
 <script src="js/App.js"></script>
 </head>
 <body>
-	<div id="responderaberta" data-role="page">
+	<div id="responder" data-role="page">
 		<div data-role="header" data-position="fixed">
 			<h3 class="html-from-values" appid="appTitleProva"></h3>
 		</div>
 		<div role="main" class="ui-content">
-			questão aberta
+			<h3 id="questaoEnunciado">Enunciado</h3>
+			<div class="divResposta" id="fieldRespostaAberta">
+			<textarea rows="" cols="" placeholder="Responder"></textarea>
+			</div>
+			<div  class="divResposta" id="fieldRespostaFechada">
+			resposta fechada
+			</div>
+			
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<button class="ui-btn ui-icon-arrow-l ui-btn-icon-top">Anterior</button>
+				</div>
+				<div class="ui-block-b">
+					<button class="ui-btn ui-icon-arrow-r ui-btn-icon-top">Próximo</button>
+				</div>
+			</div>
+
+
 		</div>
 		<div data-role="footer" data-position="fixed"
 			class="html-from-snippet-array" snippet="snippet-footer"></div>
 	</div>
-	<div id="responderfechada" data-role="page">
-		<div data-role="header" data-position="fixed">
-			<h3 class="html-from-values" appid="appTitleProva"></h3>
-		</div>
-		<div role="main" class="ui-content">
-			questão fechada
-		</div>
-		<div data-role="footer" data-position="fixed"
-			class="html-from-snippet-array" snippet="snippet-footer"></div>
-	</div>
+	
 </body>
 </html>

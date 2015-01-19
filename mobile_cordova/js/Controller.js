@@ -27,7 +27,7 @@ Controller = function(urlRequest,linkClass,param,attr) {
 		urlFinal = urlRequest;
 		doRequestGet(onSuccessGetAll, onError);
 	}
-	function getById(id) {
+	function getById(id) { 
 	urlFinal = urlRequest+"/"+id;
 		doRequestGet(onSuccessGetById, onError);
 	}
@@ -82,6 +82,7 @@ Controller = function(urlRequest,linkClass,param,attr) {
 		param:param,
 		linkClass:linkClass,
 		attr:attr,
+		item:item,
 		init : init,
 		getAll:getAll,
 		getById:getById,
