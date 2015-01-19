@@ -13,13 +13,13 @@ Controller = function(urlRequest,linkClass,param,attr) {
 	var 
 	urlRequest = urlRequest||"",
 	param=param||"",
-	linkClass=linkClass||".link",
+	linkClass=linkClass||"link",
 	attr=attr||"id";
 	
 	function init(){
 		getAll();
 	
-		$(document).off("click", linkClass).on("click", linkClass,
+		$(document).off("click","."+linkClass).on("click","."+linkClass,
 				clickItem);
 	}
 
@@ -28,19 +28,18 @@ Controller = function(urlRequest,linkClass,param,attr) {
 		doRequestGet(onSuccessGetAll, onError);
 	}
 	function getById(id) {
-	urlFinal = urlRequest+"/"+id+"/";
+	urlFinal = urlRequest+"/"+id;
 		doRequestGet(onSuccessGetById, onError);
 	}
 	function clickItem() {
 		idSelected = $(this).attr(attr);
-		alert("clicar item:"+idSelected);
+		getById(idSelected);
 	}
 	function onSuccessGetAll(response) {
 		items = response.items;
 		showScreenList(items);
 	}
 	function onSuccessGetById(response) {
-		alert("success");
 		item = response.item;
 		showItem(item);
 	}
@@ -51,14 +50,17 @@ Controller = function(urlRequest,linkClass,param,attr) {
 
 	function doRequestGet(onSuccess, onError) {
 		var values = {
+		beforeSend: function() { $.mobile.loading( 'show'); }, //Show spinner
+	    complete: function() { $.mobile.loading( 'hide'); }, //Hide spinner
 			type : "POST",
 			dataType : "json",
-			url : Values.server + "/" + urlRequest,
+			url : Values.server  + urlFinal,
 			data : param,
 			success : onSuccess,
 			error : onError
 		};
 		$.ajax(values);
+
 
 	}
 	function showScreenList(items) {

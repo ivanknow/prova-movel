@@ -1,29 +1,42 @@
-var ProvaController = new Controller("prova", ".linkProva", "", "id");
+var ProvaController = new Controller("prova", "linkProva", "", "attrid");
 
-ProvaController.setShowScreenList(function(items){
+ProvaController.setShowScreenList(function(items) {
 	var html = "";
 	for (t in items) {
-		/*var link = HTMLMaker().createTag("a").attr("href", "iniciarprova.html").attr("class","linkProva").content(items[t].titulo);
-		var linkIcon = HTMLMaker().createTag("a").attr("href", "iniciarprova.html").attr("class","linkProva").content(items[t].titulo);
-		html +=  HTMLMaker().createTag("li").content(link.show()+linkIcon.show()).show();		*/
-		html += 
-		"<li>"+
-		"<a href='iniciarprova.html'> Prova 1 </a>"+
-		"<a href='iniciarprova.html' data-transition='pop' class='linkProva'>Iniciar</a>"+
-		"</li>";
+		var link = HTMLMaker()
+		.createTag("a")
+		.attr("href", "iniciarprova.html")
+		.attr("class", ProvaController.linkClass)
+		.attr('data-transition', 'slide')
+		.attr("attrid", items[t].id)
+		.content(items[t].titulo);
 		
-/*		<li><a href='iniciarprova.html'> Prova 1 </a> <a href='iniciarprova.html' data-transition='pop'
-					class='linkProva'>Iniciar</a></li>*/
-/*		<li><a href="iniciarprova.html" class="linkProva">Prova 3</a> <a href="iniciarprova.html" class="linkProva">Prova 3</a></li>*/
-
+		var linkIcon = HTMLMaker()
+		.createTag("a")
+		.attr('data-transition', 'slide')
+		.attr("href","iniciarprova.html")
+		.attr("class", ProvaController.linkClass)
+		.attr("attrid", items[t].id)
+		.content(items[t].titulo);
+		
+		html += HTMLMaker()
+		.createTag("li")
+		.content(link.show() + linkIcon.show())
+		.show();
 	}
 
 	$("#divListaProva").html(html);
+	$('#divListaProva').listview('refresh');
+
+
 });
 
-/*ProvaController.setShowItem(function(item){
-	
-});*/
+ProvaController.setShowItem(function(item) {
+	$('#tableDadosProva  tr:last td:eq(0)').html(item.titulo);
+	$('#tableDadosProva  tr:last td:eq(1)').html(item.autor);
+	$('#tableDadosProva  tr:last td:eq(2)').html(item.data);
+	$('#tableDadosProva  tr:last td:eq(3)').html(item.count);	
+});
 
 $(document).on("pagebeforecreate", "#home", function() {
 	ProvaController.init();
