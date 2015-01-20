@@ -11,7 +11,7 @@ var ProvaExecucaoController = function(){
 	}	
 	
 	function init(){
-		alert("init");
+		
 		$("#btnNext").click(function(){
 			alert("proximo");
 			proximaIndice();
@@ -27,16 +27,20 @@ var ProvaExecucaoController = function(){
 		carregaQuestaoTela();
 	}
 	function recarregarPagina(){
-		$.mobile.changePage( "responder.html", { transition: "slide", changeHash: false });
-	}
-	
-	function proximaIndice(){
-		var novoIndice = questaoSelecionadaIndex;
-		novoIndice++;
-		if(novoIndice < getQuestaoCount()){
-			questaoSelecionadaIndex = novoIndice;
-		}
-		questaoSelecionadaIndex = 0;
+		alert("recarrega");
+		//$.mobile.changePage( "responder.html", { transition: "slide", changeHash: false });
+		//$.mobile.loadPage( "responder.html");
+		
+		$.mobile.changePage(
+			    window.location.href,
+			    {
+			      allowSamePageTransition : true,
+			      transition              : 'slide',
+			      showLoadMsg             : false,
+			      reloadPage              : false
+			    }
+			  );
+
 	}
 	
 	function carregaQuestaoTela(){
@@ -60,13 +64,31 @@ var ProvaExecucaoController = function(){
 		}
 	}
 	
+
+	function proximaIndice(){
+		alert("proximo");
+		alert(questaoSelecionadaIndex);
+		var novoIndice = questaoSelecionadaIndex;
+		novoIndice++;
+		if(novoIndice < getQuestaoCount()){
+			questaoSelecionadaIndex = novoIndice;
+		}else{
+			questaoSelecionadaIndex = 0;	
+		}
+		alert(questaoSelecionadaIndex);
+	}
+	
 	function anteriorIndice(){
+		alert(questaoSelecionadaIndex);
 		var novoIndice = questaoSelecionadaIndex;
 		novoIndice--;
 		if(novoIndice >= 0){
+			
 			questaoSelecionadaIndex = novoIndice;
-		}
+		}else{
 		questaoSelecionadaIndex = getQuestaoCount() - 1;
+		}
+		alert(questaoSelecionadaIndex);
 	} 
 	return {
 		init:init,
@@ -81,7 +103,7 @@ var ProvaExecucaoController = function(){
 
 
 $(document).on("pagebeforecreate", "#responder", function() {
-	alert("criou");
+	alert("cria");
 	ProvaExecucaoController.init();
 
 });
