@@ -40,13 +40,14 @@ function getProvaById($id) {
 					"autor" => "Gilberto",
 					"questoes" => array (
 							array (
-									"enunciado" => "Qual eh a cor?","tipo"=>1
+									"enunciado" => "Qual eh a cor?","tipo"=>1,
+									alternativas => array("Azul","Amarelo","Verde","Vermelho")
 							),
 							array (
 									"enunciado" => "Porque tem cor?","tipo"=>0 
 							),
 							array (
-									"enunciado" => "Onde a cor fica visivel?","tipo"=>0 
+									"enunciado" => "Onde a cor fica visivel?","tipo"=>0, 
 							) 
 					) 
 			)
