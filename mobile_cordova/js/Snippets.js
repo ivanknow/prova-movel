@@ -18,7 +18,7 @@ var Snippets = {
 
 			var html = Snippets.getSnippet(snippet);
 			
-			$(this).html(html);
+			$(this).html(html.show());
 		});
 	},
 	snippetValues : [
@@ -30,7 +30,7 @@ var Snippets = {
 						.attr("data-role='button'")
 						.attr("class",
 								"ui-btn ui-btn-right ui-icon-home ui-btn-icon-left")
-						.content("Home").show()
+						.content("Home")
 			},
 			{
 				id : 'snippet-footer',
@@ -48,7 +48,7 @@ var Snippets = {
 						.attr("data-rel", "back")
 						.attr("class",
 								"ui-btn ui-btn-left ui-icon-back ui-btn-icon-left")
-						.content("Voltar").show()
+						.content("Voltar")
 			},
 			{
 				id : 'snippet-btn-sair',
@@ -58,7 +58,15 @@ var Snippets = {
 						.attr("data-transition", "slide")
 						.attr("class",
 								"ui-btn ui-btn-left ui-icon-delete ui-btn-icon-left")
-						.content("Sair").show()
+						.content("Sair")
+			},
+			{
+				id : 'snippet-item-resposta-fechada',
+				value : HTMLMaker()
+						.createTag("input")
+						.attr("tipe", "radio")
+						.attr("name", "respostaFechada")
+						.content("")
 			}
 
 	],

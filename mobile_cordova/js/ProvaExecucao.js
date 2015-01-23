@@ -13,13 +13,13 @@ var ProvaExecucaoController = function(){
 	function init(){
 		
 		$("#btnNext").click(function(){
-			alert("proximo");
+			//alert("proximo");
 			proximaIndice();
 			recarregarPagina();
 		});
 		
 		$("#btnAnt").click(function(){
-			alert("anterior");
+			//alert("anterior");
 			anteriorIndice();
 			recarregarPagina();
 		});
@@ -27,10 +27,7 @@ var ProvaExecucaoController = function(){
 		carregaQuestaoTela();
 	}
 	function recarregarPagina(){
-		alert("recarrega");
-		//$.mobile.changePage( "responder.html", { transition: "slide", changeHash: false });
-		//$.mobile.loadPage( "responder.html");
-		
+
 		$.mobile.changePage(
 			    window.location.href,
 			    {
@@ -40,7 +37,7 @@ var ProvaExecucaoController = function(){
 			      reloadPage              : false
 			    }
 			  );
-
+		carregaQuestaoTela();
 	}
 	
 	function carregaQuestaoTela(){
@@ -50,7 +47,7 @@ var ProvaExecucaoController = function(){
 		$(".divResposta").each(function() {
 			$(this).hide();
 		});
-		
+		//alert("tipo:"+questao.tipo);
 		switch(questao.tipo){
 		case 0: // aberto
 			//mostra aberta
@@ -58,6 +55,13 @@ var ProvaExecucaoController = function(){
 		break;
 		
 		case 1: // fechada
+			$("#fieldRespostaFechada").html("");
+			for (t in questao.alternativas) {
+				$("#fieldRespostaFechada").append(Snippets.
+						getSnippet('snippet-item-resposta-fechada').
+						content(questao.alternativas[t]));
+			}
+			
 			//mostra fechada
 			$("#fieldRespostaFechada").show();
 		break;
@@ -66,8 +70,8 @@ var ProvaExecucaoController = function(){
 	
 
 	function proximaIndice(){
-		alert("proximo");
-		alert(questaoSelecionadaIndex);
+		//alert("proximo");
+		//alert(questaoSelecionadaIndex);
 		var novoIndice = questaoSelecionadaIndex;
 		novoIndice++;
 		if(novoIndice < getQuestaoCount()){
@@ -75,11 +79,11 @@ var ProvaExecucaoController = function(){
 		}else{
 			questaoSelecionadaIndex = 0;	
 		}
-		alert(questaoSelecionadaIndex);
+		//alert(questaoSelecionadaIndex);
 	}
 	
 	function anteriorIndice(){
-		alert(questaoSelecionadaIndex);
+		//alert(questaoSelecionadaIndex);
 		var novoIndice = questaoSelecionadaIndex;
 		novoIndice--;
 		if(novoIndice >= 0){
@@ -88,7 +92,7 @@ var ProvaExecucaoController = function(){
 		}else{
 		questaoSelecionadaIndex = getQuestaoCount() - 1;
 		}
-		alert(questaoSelecionadaIndex);
+		//alert(questaoSelecionadaIndex);
 	} 
 	return {
 		init:init,
@@ -103,7 +107,8 @@ var ProvaExecucaoController = function(){
 
 
 $(document).on("pagebeforecreate", "#responder", function() {
-	alert("cria");
+	//alert("cria");
 	ProvaExecucaoController.init();
 
 });
+
