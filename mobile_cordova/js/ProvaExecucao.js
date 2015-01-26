@@ -1,114 +1,124 @@
-var ProvaExecucaoController = function(){
+ProvaExecucaoController = function() {
 	var provaSelecionada = null;
-	var questaoSelecionadaIndex = 0
-	
-	function getQuestaoAtual(){
+	var questaoSelecionadaIndex = 0;
+
+	function getQuestaoAtual() {
 		return ProvaExecucaoController.provaSelecionada.questoes[questaoSelecionadaIndex];
 	}
-	
-	function getQuestaoCount(){
+
+	function getQuestaoCount() {
 		return ProvaExecucaoController.provaSelecionada.questoes.length;
-	}	
-	
-	function init(){
-		
-		$("#btnNext").click(function(){
-			//alert("proximo");
+	}
+
+	function init() {
+
+		$("#btnNext").click(function() {
+			atualizaRespostaQuestaoAtual();
 			proximaIndice();
 			recarregarPagina();
 		});
-		
-		$("#btnAnt").click(function(){
-			//alert("anterior");
+
+		$("#btnAnt").click(function() {
+			atualizaRespostaQuestaoAtual();
 			anteriorIndice();
 			recarregarPagina();
 		});
-		
+
 		carregaQuestaoTela();
 	}
-	function recarregarPagina(){
+	function recarregarPagina() {
 
-		$.mobile.changePage(
-			    window.location.href,
-			    {
-			      allowSamePageTransition : true,
-			      transition              : 'slide',
-			      showLoadMsg             : false,
-			      reloadPage              : false
-			    }
-			  );
+		$.mobile.changePage(window.location.href, {
+			allowSamePageTransition : true,
+			transition : 'slide',
+			showLoadMsg : false,
+			reloadPage : false
+		});
 		carregaQuestaoTela();
+	}
+
+	function atualizaRespostaQuestaoAtual(){
+
+		var questao = getQuestaoAtual();
+		
+		switch (questao.tipo) {
+		case 0: // aberto
+			questao.resposta = $("#fieldRespostaAberta").val();
+			break;
+		case 1: // fechada
+			questao.resposta = $("input[type='radio']:checked").val();
+			break;
+		}
+
 	}
 	
-	function carregaQuestaoTela(){
+	function carregaQuestaoTela() {
 		var questao = getQuestaoAtual();
 		$('#questaoEnunciado').html(questao.enunciado);
-		
+
 		$(".divResposta").each(function() {
 			$(this).hide();
 		});
-		//alert("tipo:"+questao.tipo);
-		switch(questao.tipo){
-		case 0: // aberto
-			//mostra aberta
-			$("#fieldRespostaAberta").show();
-		break;
 		
+		switch (questao.tipo) {
+		case 0: // aberto
+			// mostra aberta
+			$("#fieldRespostaAberta").show();
+			break;
+
 		case 1: // fechada
 			$("#fieldRespostaFechada").html("");
-			for (t in questao.alternativas) {
-				$("#fieldRespostaFechada").append(Snippets.
-						getSnippet('snippet-item-resposta-fechada').
-						content(questao.alternativas[t]));
+			var snippetItem = Snippets
+					.getSnippet('snippet-item-resposta-fechada');
+			var snippetItemLabel = Snippets
+					.getSnippet('snippet-item-resposta-fechada-label');
+			var html = "";
+			for (var t = 0; t < questao.alternativas.length; t++) {
+				html += snippetItem.updateAttr("id", t).updateAttr("value", t)
+						.show();
+				html += snippetItemLabel.updateAttr("for", t).content(
+						questao.alternativas[t]).show();
 			}
-			
-			//mostra fechada
+			$("#fieldRespostaFechada").html(html);
+			$("input[type='radio']").checkboxradio();
+			$("input[type='radio']").checkboxradio("refresh");
+			// mostra fechada
 			$("#fieldRespostaFechada").show();
-		break;
+			break;
 		}
 	}
-	
 
-	function proximaIndice(){
-		//alert("proximo");
-		//alert(questaoSelecionadaIndex);
+	function proximaIndice() {
 		var novoIndice = questaoSelecionadaIndex;
 		novoIndice++;
-		if(novoIndice < getQuestaoCount()){
+		if (novoIndice < getQuestaoCount()) {
 			questaoSelecionadaIndex = novoIndice;
-		}else{
-			questaoSelecionadaIndex = 0;	
+		} else {
+			questaoSelecionadaIndex = 0;
 		}
-		//alert(questaoSelecionadaIndex);
 	}
-	
-	function anteriorIndice(){
-		//alert(questaoSelecionadaIndex);
+
+	function anteriorIndice() {
 		var novoIndice = questaoSelecionadaIndex;
 		novoIndice--;
-		if(novoIndice >= 0){
-			
+		if (novoIndice >= 0) {
+
 			questaoSelecionadaIndex = novoIndice;
-		}else{
-		questaoSelecionadaIndex = getQuestaoCount() - 1;
+		} else {
+			questaoSelecionadaIndex = getQuestaoCount() - 1;
 		}
-		//alert(questaoSelecionadaIndex);
-	} 
+	}
 	return {
-		init:init,
-		provaSelecionada:provaSelecionada,
-		getQuestaoAtual:getQuestaoAtual,
-		anteriorIndice:anteriorIndice,
-		proximaIndice:proximaIndice,
-		questaoSelecionadaIndex:questaoSelecionadaIndex
+		init : init,
+		provaSelecionada : provaSelecionada,
+		getQuestaoAtual : getQuestaoAtual,
+		anteriorIndice : anteriorIndice,
+		proximaIndice : proximaIndice,
+		questaoSelecionadaIndex : questaoSelecionadaIndex
 	};
 }();
 
-
-
 $(document).on("pagebeforecreate", "#responder", function() {
-	//alert("cria");
 	ProvaExecucaoController.init();
 
 });
-
