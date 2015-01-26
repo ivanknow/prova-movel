@@ -43,7 +43,8 @@ ProvaExecucaoController = function() {
 		
 		switch (questao.tipo) {
 		case 0: // aberto
-			questao.resposta = $("#fieldRespostaAberta").val();
+			var text =  $("#fieldtextRespostaAberta").val();
+			questao.resposta = text;
 			break;
 		case 1: // fechada
 			questao.resposta = $("input[type='radio']:checked").val();
@@ -63,6 +64,7 @@ ProvaExecucaoController = function() {
 		switch (questao.tipo) {
 		case 0: // aberto
 			// mostra aberta
+			 $("#fieldtextRespostaAberta").val(questao.resposta||"");
 			$("#fieldRespostaAberta").show();
 			break;
 
@@ -82,6 +84,12 @@ ProvaExecucaoController = function() {
 			$("#fieldRespostaFechada").html(html);
 			$("input[type='radio']").checkboxradio();
 			$("input[type='radio']").checkboxradio("refresh");
+			
+			if(questao.resposta!=undefined){
+				$("input[type='radio']:eq("+questao.resposta+")").attr("checked", "checked");
+				$("input[type='radio']").checkboxradio("refresh");
+			}
+			
 			// mostra fechada
 			$("#fieldRespostaFechada").show();
 			break;
@@ -119,6 +127,10 @@ ProvaExecucaoController = function() {
 }();
 
 $(document).on("pagebeforecreate", "#responder", function() {
-	ProvaExecucaoController.init();
-
+	try {
+		ProvaExecucaoController.init();
+	}
+	catch(err) {
+		window.location = "index.html";
+	}
 });

@@ -15,31 +15,18 @@
 <script src="js/App.js"></script>
 </head>
 <body>
-	<div id="responder" data-role="page">
+	<div id="questoes" data-role="page">
 		<div data-role="header" data-position="fixed">
 			<h3 class="html-from-values" appid="appTitleProva"></h3>
 		</div>
 		<div role="main" class="ui-content">
-			<h3 id="questaoEnunciado">Enunciado</h3>
-			<div class="divResposta" id="fieldRespostaAberta">
-			<textarea id="fieldtextRespostaAberta"  placeholder="Responder"></textarea>
-			</div>
-			<div  class="divResposta" id="fieldRespostaFechada">
-			resposta fechada
-			</div>
-			
-			<div class="ui-grid-a">
-				<div class="ui-block-a">
-					<button id="btnAnt" class="btnAnt ui-btn ui-icon-arrow-l  ui-btn-icon-top">Anterior</button>
-				</div>
-				<div class="ui-block-b">
-					<button id="btnNext" class="btnAnt ui-btn ui-icon-arrow-r ui-btn-icon-top">Próximo</button>
-				</div>
-			</div>
-
-
+			<h3>Questões</h3>
+			<ul data-role="listview" id="divListaProva" data-split-icon="action"
+				data-split-theme="d" data-inset="true">
+				<!-- Conteudo inserido dinamicamente Prova.js -->
+			</ul>
 		</div>
 	</div>
-	
+
 </body>
 </html>
