@@ -15,9 +15,7 @@ var Snippets = {
 		$(".html-from-snippet-array").each(function() {
 
 			var snippet = $(this).attr('snippet');
-
 			var html = Snippets.getSnippet(snippet);
-			
 			$(this).html(html.show());
 		});
 	},
@@ -37,7 +35,7 @@ var Snippets = {
 				value : HTMLMaker().createTag("a").attr("href", "about.html")
 						.attr("data-transition", "slideup").attr("class",
 								"ui-btn ui-corner-all").attr("style",
-								"width: 100%").content("Sobre Nós").show()
+								"width: 100%").content("Sobre Nós")
 			},
 			{
 				id : 'snippet-btn-voltar',
@@ -64,8 +62,15 @@ var Snippets = {
 				id : 'snippet-item-resposta-fechada',
 				value : HTMLMaker()
 						.createTag("input")
-						.attr("tipe", "radio")
+						.attr("type", "radio")
 						.attr("name", "respostaFechada")
+						.content("")
+			}
+			,
+			{
+				id : 'snippet-item-resposta-fechada-label',
+				value : HTMLMaker()
+						.createTag("label")
 						.content("")
 			}
 
@@ -76,6 +81,7 @@ var Snippets = {
 				return Snippets.snippetValues[i].value;
 			}
 		}
+		throw "Snippet ID is not found";
 		return null;
 	}
 };

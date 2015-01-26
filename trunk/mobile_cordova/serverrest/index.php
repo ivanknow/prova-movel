@@ -41,7 +41,7 @@ function getProvaById($id) {
 					"questoes" => array (
 							array (
 									"enunciado" => "Qual eh a cor?","tipo"=>1,
-									alternativas => array("Azul","Amarelo","Verde","Vermelho")
+									"alternativas" => array("Azul","Amarelo","Verde","Vermelho")
 							),
 							array (
 									"enunciado" => "Porque tem cor?","tipo"=>0 

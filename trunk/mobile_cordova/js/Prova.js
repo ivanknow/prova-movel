@@ -1,4 +1,4 @@
-var ProvaController = new Controller("prova", "linkProva", "", "attrid");
+ProvaController = new Controller("prova", "linkProva", "", "attrid");
 
 ProvaController.QuestaoSelecionadaIndex = 0;
 
