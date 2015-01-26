@@ -36,6 +36,12 @@ var Snippets = {
 						.attr("data-transition", "slideup").attr("class",
 								"ui-btn ui-corner-all").attr("style",
 								"width: 100%").content("Sobre NÃ³s")
+			},{
+				id : 'snippet-footer-questpes',
+				value : HTMLMaker().createTag("a").attr("href", "questoes.html")
+						.attr("data-transition", "slideup").attr("class",
+								"ui-btn ui-corner-all").attr("style",
+								"width: 100%").content("Questões")
 			},
 			{
 				id : 'snippet-btn-voltar',

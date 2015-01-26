@@ -34,13 +34,18 @@ ProvaController.setShowScreenList(function(items) {
 });
 
 ProvaController.setShowItem(function(item) {
-	$('#tableDadosProva  tr:last td:eq(0)').html(item.titulo);
-	$('#tableDadosProva  tr:last td:eq(1)').html(item.autor);
-	$('#tableDadosProva  tr:last td:eq(2)').html(item.data);
-	$('#tableDadosProva  tr:last td:eq(3)').html(item.questoes.length);	
+	$('#tableDadosProva tbody  tr:last td:eq(0)').html(item.titulo);
+	$('#tableDadosProva tbody tr:last td:eq(1)').html(item.autor);
+	$('#tableDadosProva tbody tr:last td:eq(2)').html(item.data);
+	$('#tableDadosProva tbody tr:last td:eq(3)').html(item.questoes.length);	
 	ProvaExecucaoController.provaSelecionada = item;
 });
 
 $(document).on("pagebeforecreate", "#home", function() {
-	ProvaController.init();
+	try {
+		ProvaController.init();
+	}
+	catch(err) {
+		window.location = "index.html";
+	}
 });
