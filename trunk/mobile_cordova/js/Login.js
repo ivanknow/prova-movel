@@ -19,8 +19,6 @@ LonginController = {
 		} catch (err) {
 			alert(err);
 		}
-		// envia pro servidor
-
 	},
 	ajax : function(login, password) {
 		var values = {
