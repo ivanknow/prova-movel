@@ -3,8 +3,7 @@
  * 
  * Dependences: Jquery, JqueryMobile
  */
-
-var App = {
+App = {
 		
 	init : function() {
 			  Values.init();
@@ -13,6 +12,5 @@ var App = {
 };
 
 $(document).on("pagebeforecreate",function(event){
-	
 	App.init();
-}); 
+});

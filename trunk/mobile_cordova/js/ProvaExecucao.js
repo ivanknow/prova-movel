@@ -55,7 +55,9 @@ ProvaExecucaoController = function() {
 	
 	function carregaQuestaoTela() {
 		var questao = getQuestaoAtual();
-		$('#questaoEnunciado').html(questao.enunciado);
+
+		var contador = HTMLMaker().createTag("h4").content("("+(questaoSelecionadaIndex+1)+" de "+getQuestaoCount()+")");
+		$('#questaoEnunciado').html(questao.enunciado+""+contador.show());
 
 		$(".divResposta").each(function() {
 			$(this).hide();
@@ -131,6 +133,7 @@ $(document).on("pagebeforecreate", "#responder", function() {
 		ProvaExecucaoController.init();
 	}
 	catch(err) {
+		alert(err.message);
 		window.location = "index.html";
 	}
 });
