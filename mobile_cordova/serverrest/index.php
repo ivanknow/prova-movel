@@ -6,7 +6,7 @@ include 'Slim/Slim.php';
 $app = new \Slim\Slim ();
 $app->post ( '/prova/', 'getAllProva' );
 $app->post ( '/prova/:id', 'getProvaById' );
-$app->get ( '/prova/:id', 'getProvaById' );
+//$app->get ( '/prova/:id', 'getProvaById' );
 $app->post ( '/login', 'login' );
 
 $app->run ();
@@ -34,7 +34,7 @@ function getAllProva() {
 function getProvaById($id) {
 	$retorno = array (
 			"item" => array (
-					"titulo" => "Prova 1",
+					"titulo" => "Prova "+$id,
 					"id" => "1",
 					"count" => "15",
 					"data" => "15/02/2015",
