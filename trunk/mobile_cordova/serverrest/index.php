@@ -7,6 +7,7 @@ $app = new \Slim\Slim ();
 $app->post ( '/prova/', 'getAllProva' );
 $app->post ( '/prova/:id', 'getProvaById' );
 $app->get ( '/prova/:id', 'getProvaById' );
+$app->post ( '/login', 'login' );
 
 $app->run ();
 function getAllProva() {
@@ -54,6 +55,21 @@ function getProvaById($id) {
 			 
 	);
 	
+	echo json_encode ( $retorno );
+}
+
+function login() {
+	$email = $_POST['login'];
+	$password = $_POST['password'];
+	//fazer busca
+		if($email == "ivanknow@gmail.com" && $password == "123456"){
+	//salva hash no banco
+			$hash = sha1($email.$password);
+	//retorna hash
+			$retorno = array("hash"=>$hash,"error"=>0);
+		}else{
+			$retorno = array("error"=>1,"errorMessage"=>"Erro no login, verifique seus dados");
+		}
 	echo json_encode ( $retorno );
 }
 ?>
