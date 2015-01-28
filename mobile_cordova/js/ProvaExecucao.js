@@ -11,14 +11,17 @@ ProvaExecucaoController = function() {
 	}
 	function getRespostas() {
 		var questoes = ProvaExecucaoController.provaSelecionada.questoes;
-		
-		var retorno = {provaId:ProvaExecucaoController.provaSelecionada.id,respostas:[]};
-		for(var i=0;i<getQuestaoCount();i++){
-			if(questoes[i].resposta)
-			retorno.respostas.push(questoes[i].resposta);
+
+		var retorno = {
+			provaId : ProvaExecucaoController.provaSelecionada.id,
+			respostas : []
+		};
+		for (var i = 0; i < getQuestaoCount(); i++) {
+			if (questoes[i].resposta)
+				retorno.respostas.push(questoes[i].resposta);
 		}
 		return retorno;
-		
+
 	}
 	function init() {
 
@@ -32,6 +35,9 @@ ProvaExecucaoController = function() {
 			atualizaRespostaQuestaoAtual();
 			anteriorIndice();
 			recarregarPagina();
+		});
+		$("#btnConfirmFinalizar").click(function() {
+			atualizaRespostaQuestaoAtual();
 		});
 
 		carregaQuestaoTela();
@@ -47,13 +53,13 @@ ProvaExecucaoController = function() {
 		carregaQuestaoTela();
 	}
 
-	function atualizaRespostaQuestaoAtual(){
+	function atualizaRespostaQuestaoAtual() {
 
 		var questao = getQuestaoAtual();
-		
+
 		switch (questao.tipo) {
 		case 0: // aberto
-			var text =  $("#fieldtextRespostaAberta").val();
+			var text = $("#fieldtextRespostaAberta").val();
 			questao.resposta = text;
 			break;
 		case 1: // fechada
@@ -62,21 +68,23 @@ ProvaExecucaoController = function() {
 		}
 
 	}
-	
+
 	function carregaQuestaoTela() {
 		var questao = getQuestaoAtual();
 
-		var contador = HTMLMaker().createTag("h4").content("("+(questaoSelecionadaIndex+1)+" de "+getQuestaoCount()+")");
-		$('#questaoEnunciado').html(questao.enunciado+""+contador.show());
+		var contador = HTMLMaker().createTag("h4").content(
+				"(" + (questaoSelecionadaIndex + 1) + " de "
+						+ getQuestaoCount() + ")");
+		$('#questaoEnunciado').html(questao.enunciado + "" + contador.show());
 
 		$(".divResposta").each(function() {
 			$(this).hide();
 		});
-		
+
 		switch (questao.tipo) {
 		case 0: // aberto
 			// mostra aberta
-			 $("#fieldtextRespostaAberta").val(questao.resposta||"");
+			$("#fieldtextRespostaAberta").val(questao.resposta || "");
 			$("#fieldRespostaAberta").show();
 			break;
 
@@ -96,12 +104,13 @@ ProvaExecucaoController = function() {
 			$("#fieldRespostaFechada").html(html);
 			$("input[type='radio']").checkboxradio();
 			$("input[type='radio']").checkboxradio("refresh");
-			
-			if(questao.resposta!=undefined){
-				$("input[type='radio']:eq("+questao.resposta+")").attr("checked", "checked");
+
+			if (questao.resposta != undefined) {
+				$("input[type='radio']:eq(" + questao.resposta + ")").attr(
+						"checked", "checked");
 				$("input[type='radio']").checkboxradio("refresh");
 			}
-			
+
 			// mostra fechada
 			$("#fieldRespostaFechada").show();
 			break;
@@ -135,16 +144,15 @@ ProvaExecucaoController = function() {
 		anteriorIndice : anteriorIndice,
 		proximaIndice : proximaIndice,
 		questaoSelecionadaIndex : questaoSelecionadaIndex,
-		getRespostas:getRespostas
+		getRespostas : getRespostas
 	};
 }();
 
 $(document).on("pagebeforecreate", "#responder", function() {
 	try {
 		ProvaExecucaoController.init();
-	}
-	catch(err) {
-		alert(err.message);
+	} catch (err) {
+		alert("Houve um erro inesperado");
 		window.location = "index.html";
 	}
 });
