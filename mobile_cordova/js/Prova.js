@@ -3,6 +3,7 @@ ProvaController = new Controller("prova", "linkProva", "", "attrid");
 ProvaController.QuestaoSelecionadaIndex = 0;
 
 ProvaController.setShowScreenList(function(items) {
+	
 	var html = "";
 	for (t in items) {
 		var link = HTMLMaker()
@@ -43,6 +44,9 @@ ProvaController.setShowItem(function(item) {
 
 $(document).on("pagebeforecreate", "#home", function() {
 	try {
+		if(LoginController.hash === ""){
+			throw "Usuario deve estar logado";
+		} 
 		ProvaController.init();
 	}
 	catch(err) {

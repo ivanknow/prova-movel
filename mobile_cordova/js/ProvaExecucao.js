@@ -9,7 +9,17 @@ ProvaExecucaoController = function() {
 	function getQuestaoCount() {
 		return ProvaExecucaoController.provaSelecionada.questoes.length;
 	}
-
+	function getRespostas() {
+		var questoes = ProvaExecucaoController.provaSelecionada.questoes;
+		
+		var retorno = {provaId:ProvaExecucaoController.provaSelecionada.id,respostas:[]};
+		for(var i=0;i<getQuestaoCount();i++){
+			if(questoes[i].resposta)
+			retorno.respostas.push(questoes[i].resposta);
+		}
+		return retorno;
+		
+	}
 	function init() {
 
 		$("#btnNext").click(function() {
@@ -124,7 +134,8 @@ ProvaExecucaoController = function() {
 		getQuestaoAtual : getQuestaoAtual,
 		anteriorIndice : anteriorIndice,
 		proximaIndice : proximaIndice,
-		questaoSelecionadaIndex : questaoSelecionadaIndex
+		questaoSelecionadaIndex : questaoSelecionadaIndex,
+		getRespostas:getRespostas
 	};
 }();
 

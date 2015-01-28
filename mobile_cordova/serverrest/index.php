@@ -7,7 +7,8 @@ $app = new \Slim\Slim ();
 $app->post ( '/prova/', 'getAllProva' );
 $app->post ( '/prova/:id', 'getProvaById' );
 //$app->get ( '/prova/:id', 'getProvaById' );
-$app->post ( '/login', 'login' );
+$app->post ( '/login/', 'login' );
+$app->post ( '/finalizar/', 'finalizarProva' );
 
 $app->run ();
 function getAllProva() {
@@ -70,6 +71,25 @@ function login() {
 		}else{
 			$retorno = array("error"=>1,"errorMessage"=>"Erro no login, verifique seus dados");
 		}
+	echo json_encode ( $retorno );
+}
+
+function finalizarProva() {
+	$email = $_POST['login'];
+	$hash = $_POST['hash'];
+	$respostas = $_POST['respostas'];
+	//$respostaString = json_decode($_POST['respostas']);
+	if($email == "ivanknow@gmail.com"){//comparar hash
+		$string = "user:"+$email;
+
+		foreach ($respostas as $key => $value) {
+			$string .= $key.":".json_encode($value)."," ;
+		}
+		
+		$retorno = array("error"=>0,"string"=>$string);
+	}else{
+		$retorno = array("error"=>1,"errorMessage"=>"Erro");
+	}
 	echo json_encode ( $retorno );
 }
 ?>
