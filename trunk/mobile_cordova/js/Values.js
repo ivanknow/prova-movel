@@ -10,6 +10,7 @@ var Values = {
 	appTitle : "Prova Movel",
 	appTitleProva : "Prova Disponiveis",
 	appTitleAbout : "Prova Movel - Sobre Nos",
+	mensagemFinalizarSucesso : "Respostas enviada com sucesso!",
 	pages : {},
 
 	init : function() {
