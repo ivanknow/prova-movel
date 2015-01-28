@@ -77,13 +77,14 @@ function login() {
 function finalizarProva() {
 	$email = $_POST['login'];
 	$hash = $_POST['hash'];
-	$respostas = $_POST['respostas'];
+	$provaId = $_POST['prova']['provaId'];
+	$respostas = $_POST['prova']['respostas'];
 	//$respostaString = json_decode($_POST['respostas']);
 	if($email == "ivanknow@gmail.com"){//comparar hash
-		$string = "user:"+$email;
+		$string =  "insert into tabela_resposta (usuario,idprova,idquestao,resposta) values ";
 
 		foreach ($respostas as $key => $value) {
-			$string .= $key.":".json_encode($value)."," ;
+			$string .= " ('".$email."','".$provaId."','".$key."','".$value."'), ";
 		}
 		
 		$retorno = array("error"=>0,"string"=>$string);
