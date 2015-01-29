@@ -15,16 +15,12 @@ function getAllProva() {
 	$retorno = array (
 			"items" => array (
 					array (
-							"titulo" => "Prova 1",
+							"titulo" => "Entretenimento",
 							"id" => "1" 
 					),
 					array (
-							"titulo" => "Prova 2",
+							"titulo" => "Super-herois",
 							"id" => "2" 
-					),
-					array (
-							"titulo" => "Prova 3",
-							"id" => "3" 
 					) 
 			)
 			 
@@ -33,28 +29,51 @@ function getAllProva() {
 	echo json_encode ( $retorno );
 }
 function getProvaById($id) {
-	$retorno = array (
+	$prova1 = array (
 			"item" => array (
-					"titulo" => "Prova "+$id,
+					"titulo" => "Entretenimento",
 					"id" => "1",
-					"count" => "15",
 					"data" => "15/02/2015",
-					"autor" => "Gilberto",
+					"autor" => "Ivan",
 					"questoes" => array (
 							array (
-									"enunciado" => "Qual eh a cor?","tipo"=>1,
-									"alternativas" => array("Azul","Amarelo","Verde","Vermelho")
+									"enunciado" => "Quem eh o diretor do filme o hobbit?","tipo"=>1,
+									"alternativas" => array("Pitter Jackson","Orlando Bloom","Wiliam Bonner","Jorge Lucas")
 							),
 							array (
-									"enunciado" => "Porque tem cor?","tipo"=>0 
+									"enunciado" => "Em que pais a serie lost foi filmada?","tipo"=>0 
 							),
 							array (
-									"enunciado" => "Onde a cor fica visivel?","tipo"=>0, 
-							) 
+									"enunciado" => "Quem eh o diretor do filme o Matrix Reload?","tipo"=>1,
+									"alternativas" => array("Pitter Jackson","Orlando Bloom","Wiliam Bonner","Jorge Lucas")
+							),
 					) 
 			)
 			 
 	);
+	
+	$prova2 = array (
+			"item" => array (
+					"titulo" => "Super-herois",
+					"id" => "2",
+					"data" => "15/02/2015",
+					"autor" => "Ivan Rodrigues",
+					"questoes" => array (
+							array (
+									"enunciado" => "Quem eh o tio do Homem-Aranha?","tipo"=>1,
+									"alternativas" => array("Tio Bem","Tio Jon","Doende Verde","Jorge Lucas")
+							),
+							array (
+									"enunciado" => "Qual desses nao eh inimigo do Batman","tipo"=>1,
+									"alternativas" => array("Bane","Tio Jon","Coringa","Duas caras")
+							)
+					)
+			)
+	
+	);
+	
+	$provasEstaticas = array (1=>$prova1,2=>$prova2); 
+	$retorno = $provasEstaticas[$id];
 	
 	echo json_encode ( $retorno );
 }
