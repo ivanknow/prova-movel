@@ -78,7 +78,11 @@ function finalizarProva() {
 	$email = $_POST['login'];
 	$hash = $_POST['hash'];
 	$provaId = $_POST['prova']['provaId'];
-	$respostas = $_POST['prova']['respostas'];
+	if (isset($_POST['prova']['respostas'])) {
+		$respostas = $_POST['prova']['respostas'];
+	}else{
+		$respostas = array();
+	}
 	//$respostaString = json_decode($_POST['respostas']);
 	if($email == "ivanknow@gmail.com"){//comparar hash
 		$string =  "insert into tabela_resposta (usuario,idprova,idquestao,resposta) values ";

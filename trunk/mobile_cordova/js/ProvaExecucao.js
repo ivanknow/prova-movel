@@ -18,7 +18,7 @@ ProvaExecucaoController = function() {
 		};
 		for (var i = 0; i < getQuestaoCount(); i++) {
 			if (questoes[i].resposta)
-				retorno.respostas.push(questoes[i].resposta);
+				retorno.respostas.push(questoes[i].resposta||"");
 		}
 		return retorno;
 
