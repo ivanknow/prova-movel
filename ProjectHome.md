@@ -1,0 +1,1 @@
+Aplicativo opensource para aplicação de provas. O aplicativo é composto de uma interface web para cadastro de perguntas e uma interface móvel onde os estudantes podem responder as perguntas
